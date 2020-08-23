@@ -1,0 +1,124 @@
+// const studentStatus = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'graduate']
+
+// const users = [
+//     {name:'Moriah', age:'20', status:studentStatus[5]},
+//     {name:'Andrew', age:'24', status:studentStatus[6]},
+//     {name:'Beatrice', age:'22', status:studentStatus[4]}
+// ];
+
+// const posts = [
+//     {comment: 'Express is fun!'},
+//     {comment: 'I pray everyday!'},
+//     {comment: 'I love Jesus!'} 
+// ]
+// app.get('/', (req,res) =>{
+
+//     res.send({
+//         msg: "Hello!",
+//         int: 1,
+//         studentStatus
+//     });
+// })
+
+// app.get('/users', (req,res) => {
+//     res.send(users); 
+// })
+
+
+// app.get('/users/:name',(req,res)=>{
+//     const {name} = req.params; 
+//     const user = users.find((user) => user.name === name ); 
+//     var i;
+//     var info = "";  
+
+//     if(user)
+//     {
+//         for(i in user)
+//         {
+//            info += user[i] + " "; 
+//         }
+//         res.status(200).send("user is " + info)
+//     }
+//     else
+//     {
+//         res.status(400).send("Not found")
+//     }
+
+// })
+// app.get('/posts', (req,res)=>{
+//     console.log(req.query); 
+//     const{comment} = req.query; 
+//     if(comment){
+//         const post = posts.find((post) => post.comment === comment)
+//         if(comment) res.status(200).send(post)
+//         else res.status(404).send('Invalid entry')
+//     }
+//     res.status(200).send(posts); 
+// })
+
+// function validateCookie(req, res, next){
+//     const {cookies} = req; 
+//     console.log(cookies); 
+//     if('sessionID' in cookies){
+//         console.log('Session ID valid.')
+//         if(cookies.sessionID === '001') next(); 
+//         else res.status(403).send('Not authenticated'); 
+//     }
+//     else res.status(403).send('Not authenticated'); 
+// }
+
+// app.get('/signin', validateCookie,(req,res)=>{
+//     res.cookie('sessionID','001'); 
+//     res.status(200).json({msg: 'logged in', time: '30mins'}); 
+// })
+
+// app.post('/', (req,res)=>{
+//     console.log(req.body);
+//     const user = req.body;
+//     users.push(user); 
+//     res.status(200).send('Created User')
+// })
+
+// app.post('/login', (req,res) => {
+//     console.log(req.sessionID); 
+//     const {username, password} = req.body; 
+//     if(username && password){
+//         if(req.session.authenticated){
+//             res.json(req.session)
+//         }
+//         else{
+//             if(password === '123'){
+//                 req.session.authenticated = true; 
+//                 req.session.user = {username,password};
+//                 res.json(req.session);
+//             }
+//             else{
+//                 res.status(403).json({msg: 'Bad credentials!'}); 
+//             }
+//         }
+// }
+// else{
+//     res.status(403).json({msg: 'Bad credentials!'}); 
+// }
+//     console.log('Hello {user}');
+//     res.send(200);
+// }); 
+
+// function validate(req, res, next){
+//     console.log('Validation begins');
+//     const {authorization} = req.headers;
+//     if (authorization && authorization === '123'){
+//         next()
+//     }
+//     else{
+//         res.status(403).send({msg: 'Forbidden. Incorrect Cresentials'}); 
+//     }
+// }
+// app.post('/posts', validate, (req,res)=>{
+  
+//         const post = req.body; 
+//         console.log(post); 
+//         posts.push(post); 
+//         res.status(201).send(post); 
+//         console.log(post);
+// })
